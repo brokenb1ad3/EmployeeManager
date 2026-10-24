@@ -1,5 +1,7 @@
 package com.example.employeemanager;
 
+import android.app.AlertDialog;
+import android.widget.AdapterView;
 import android.app.Activity;
 import android.os.Bundle;
 import android.widget.ArrayAdapter;
@@ -32,6 +34,43 @@ public class SalaryActivity extends Activity {
         edtNam = findViewById(R.id.edtNam);
         btnTinhLuong = findViewById(R.id.btnTinhLuong);
         lvBangLuong = findViewById(R.id.lvBangLuong);
+        lvBangLuong.setOnItemClickListener((parent, view, position, id) -> {
+            String item = adapter.getItem(position);
+
+            if (item == null) {
+                return;
+            }
+
+            String maNV = item.split("\n")[0].replace("Mã NV: ", "");
+
+            new AlertDialog.Builder(SalaryActivity.this)
+                    .setTitle("Xác nhận thanh toán")
+                    .setMessage("Đánh dấu lương của nhân viên " + maNV
+                            + " là đã thanh toán?")
+                    .setPositiveButton("Đã thanh toán", (dialog, which) -> {
+                        int thang = Integer.parseInt(
+                                edtThang.getText().toString().trim());
+                        int nam = Integer.parseInt(
+                                edtNam.getText().toString().trim());
+
+                        boolean success = dbHelper.updateSalaryStatus(
+                                maNV, thang, nam, "Paid");
+
+                        if (success) {
+                            Toast.makeText(this, "Đã cập nhật trạng thái lương",
+                                    Toast.LENGTH_SHORT).show();
+
+                            adapter.clear();
+                            adapter.addAll(dbHelper.getMonthlySalary(thang, nam));
+                            adapter.notifyDataSetChanged();
+                        } else {
+                            Toast.makeText(this, "Cập nhật thất bại",
+                                    Toast.LENGTH_SHORT).show();
+                        }
+                    })
+                    .setNegativeButton("Hủy", null)
+                    .show();
+        });
 
         Calendar calendar = Calendar.getInstance();
         edtThang.setText(String.valueOf(calendar.get(Calendar.MONTH) + 1));
