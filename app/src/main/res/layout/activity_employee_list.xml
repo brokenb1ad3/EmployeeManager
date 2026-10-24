@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:background="#F5F7FB">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="DANH SÁCH NHÂN VIÊN"
+        android:textSize="23sp"
+        android:textStyle="bold"
+        android:textColor="#FF7A00"
+        android:gravity="center"
+        android:padding="12dp" />
+
+    <EditText
+        android:id="@+id/edtTimKiem"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Nhập mã hoặc tên nhân viên"
+        android:singleLine="true"
+        android:inputType="text" />
+
+    <Button
+        android:id="@+id/btnTimKiem"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Tìm kiếm"
+        android:backgroundTint="#FF7A00"
+        android:textColor="#FFFFFF" />
+
+    <Button
+        android:id="@+id/btnTatCa"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Hiển thị tất cả nhân viên" />
+
+    <ListView
+        android:id="@+id/lvDanhSachNV"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:dividerHeight="1dp" />
+
+</LinearLayout>

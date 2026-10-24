@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="20dp">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="CHẤM CÔNG NHÂN VIÊN"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:gravity="center"
+        android:layout_marginBottom="24dp" />
+
+
+    <TextView
+        android:id="@+id/tvMaNhanVien"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Mã nhân viên:"
+        android:textSize="18sp"
+        android:layout_marginBottom="16dp" />
+
+
+    <Button
+        android:id="@+id/btnCheckIn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Check-in" />
+
+    <Button
+        android:id="@+id/btnCheckOut"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Check-out" />
+
+    <Button
+        android:id="@+id/btnLichSu"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Xem lịch sử chấm công" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="LỊCH SỬ CHẤM CÔNG"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="8dp" />
+
+    <ListView
+        android:id="@+id/lvLichSu"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:dividerHeight="8dp" />
+
+</LinearLayout>

@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="20dp"
+    android:background="#FFFFFF">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="QUẢN LÝ NHÂN VIÊN"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:textColor="#222222"
+        android:gravity="center"
+        android:layout_marginBottom="20dp" />
+
+    <EditText
+        android:id="@+id/edtMaNV"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Mã nhân viên"
+        android:inputType="text" />
+
+    <EditText
+        android:id="@+id/edtTenNV"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Họ và tên"
+        android:inputType="textPersonName" />
+
+    <EditText
+        android:id="@+id/edtSdt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Số điện thoại"
+        android:inputType="phone" />
+
+
+    <EditText
+        android:id="@+id/edtLuongGio"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Lương theo giờ (VNĐ)"
+        android:inputType="numberDecimal"
+        android:singleLine="true" />
+
+    <Button
+        android:id="@+id/btnThem"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Thêm nhân viên" />
+
+    <Button
+        android:id="@+id/btnDanhSach"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Xem danh sách nhân viên" />
+
+
+    <Button
+        android:id="@+id/btnSua"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Sửa nhân viên" />
+
+    <Button
+        android:id="@+id/btnXoa"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Xóa nhân viên" />
+
+    <Button
+        android:id="@+id/btnQuanLyLuong"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Quản lý bảng lương" />
+
+    <ListView
+        android:id="@+id/lvNhanVien"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1" />
+
+    <Button
+        android:id="@+id/btnMoDanhSach"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Mở màn hình danh sách nhân viên" />
+
+
+</LinearLayout>
