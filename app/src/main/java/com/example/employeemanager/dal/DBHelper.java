@@ -329,45 +329,49 @@ public class DBHelper extends SQLiteOpenHelper {
         String checkInTime = cursor.getString(1);
         cursor.close();
 
+        String checkOutTime = new SimpleDateFormat(
+                "HH:mm:ss", Locale.getDefault()
+        ).format(new Date());
+
         try {
-            SimpleDateFormat timeFormat = new SimpleDateFormat(
+            SimpleDateFormat sdf = new SimpleDateFormat(
                     "HH:mm:ss", Locale.getDefault()
             );
 
-            Date start = timeFormat.parse(checkInTime);
-            Date end = timeFormat.parse(
-                    timeFormat.format(new Date())
-            );
+            Date inTime = sdf.parse(checkInTime);
+            Date outTime = sdf.parse(checkOutTime);
 
-            if (start == null || end == null) {
+            if (inTime == null || outTime == null) {
                 return false;
             }
 
-            long elapsed = end.getTime() - start.getTime();
+            long diff = outTime.getTime() - inTime.getTime();
 
-            if (elapsed < 0) {
+            if (diff < 0) {
                 return false;
             }
 
-            double totalHours = elapsed / 3600000.0;
+            double totalHours = diff / (1000.0 * 60 * 60);
 
             ContentValues values = new ContentValues();
-            values.put("checkOutTime", timeFormat.format(new Date()));
+            values.put("checkOutTime", checkOutTime);
             values.put("totalHours", totalHours);
             values.put("status", "Completed");
 
-            return getWritableDatabase().update(
+            int result = getWritableDatabase().update(
                     "WorkLog",
                     values,
                     "id = ?",
                     new String[]{String.valueOf(workLogId)}
-            ) > 0;
+            );
 
-        } catch (Exception e) {
+            return result > 0;
+
+        } catch (java.text.ParseException e) {
+            e.printStackTrace();
             return false;
         }
     }
-
     public ArrayList<String> getWorkHistory(String employeeCode) {
         ArrayList<String> history = new ArrayList<>();
 
@@ -549,5 +553,24 @@ public class DBHelper extends SQLiteOpenHelper {
 
         cursor.close();
         return list;
+    }
+    public boolean updateSalaryStatus(String employeeCode, int month, int year,
+                                      String status) {
+        SQLiteDatabase db = getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+        values.put("status", status);
+
+        return db.update(
+                "Salary",
+                values,
+                "employeeId = (SELECT id FROM Employee WHERE code = ?) " +
+                        "AND month = ? AND year = ?",
+                new String[]{
+                        employeeCode,
+                        String.valueOf(month),
+                        String.valueOf(year)
+                }
+        ) > 0;
     }
 }
